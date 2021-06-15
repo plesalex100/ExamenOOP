@@ -63,7 +63,7 @@ namespace ExamenOOP
 
     class Stack2 : IStack
     {
-        static int MAX = 2;
+        static int MAX = 100;
         private int[] data = new int[MAX];
         int top = -1;
 
