@@ -52,6 +52,13 @@ namespace ExamenOOP
                 data[++top] = item;
             }
         }
+
+
+        public void PrintStackInChar()
+        {
+            for (int i = 0; i < Count; i++)
+                Console.Write((char)data[i]);
+        }
     }
 
     class Stack2 : IStack
@@ -69,8 +76,6 @@ namespace ExamenOOP
                 throw new Exception("Stack Underflow");
             else
             {
-
-                Console.WriteLine($"top: {top}");
                 return data[top];
             }
         }
@@ -105,29 +110,66 @@ namespace ExamenOOP
                 data[++top] = item;
             }
         }
+
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            var stack = new Stack2();
+            var stack = new Stack1();
+            var final = new Stack1();
 
-            stack.Push(69);
-            Console.WriteLine(stack.Capacity);
 
-            stack.Push(59);
-            stack.Push(100);
+            stack.Push('/');
+            stack.Push('u');
+            stack.Push('/');
+            stack.Push('l');
+            stack.Push('o');
+            stack.Push('v');
+            stack.Push('e');
+            stack.Push('\\');
+            stack.Push('i');
+            stack.Push('\\');
 
-            Console.WriteLine(stack.Capacity);
-            Console.WriteLine(stack.Peek());
+            stack.PrintStackInChar();
+
+            Console.WriteLine();
 
             stack.Pop();
 
-            Console.WriteLine(stack.Peek());
+            while(stack.Peek() != '\\')
+            {
+                final.Push(stack.Peek());
+                stack.Pop();
+            }
 
+            stack.Pop();
 
-            
+            var mid = new Stack1();
+
+            while(stack.Peek() != '/')
+            {
+                mid.Push(stack.Peek());
+                stack.Pop();
+            }
+
+            while(mid.Count > 0)
+            {
+                final.Push(mid.Peek());
+                mid.Pop();
+            }
+
+            stack.Pop();
+
+            while (stack.Peek() != '/')
+            {
+                final.Push(stack.Peek());
+                stack.Pop();
+            }
+
+            final.PrintStackInChar();
+
         }
     }
 }
